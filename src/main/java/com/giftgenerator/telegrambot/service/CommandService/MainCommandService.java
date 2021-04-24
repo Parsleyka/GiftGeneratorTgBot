@@ -5,16 +5,17 @@ import com.giftgenerator.telegrambot.service.CommandService.MansCommands.SonComm
 import com.giftgenerator.telegrambot.service.CommandService.WomansCommands.DaughterCommand;
 import com.giftgenerator.telegrambot.service.CommandService.WomansCommands.WifeCommand;
 import com.giftgenerator.telegrambot.service.MessageService;
-import com.giftgenerator.telegrambot.service.UserForGift;
+import com.giftgenerator.telegrambot.service.UsersConnect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 public class MainCommandService {
-    @Autowired
-    UserForGift userForGift;
     @Autowired
     MessageService messageService;
 
@@ -45,7 +46,10 @@ public class MainCommandService {
     @Autowired
     DaughterCommand daughterCommand;
 
+    Map<Integer,String> users = new HashMap<>();
+
     public void dispatch(Update update){
+
         switch (getCommand(update)){
             case START:
                 messageService.sendMessage(update.getMessage(),startCommand.run());
