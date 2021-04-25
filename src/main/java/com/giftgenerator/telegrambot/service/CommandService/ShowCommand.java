@@ -23,13 +23,17 @@ public class ShowCommand implements Command{
 
     @Override
     public String run() {
-        giftsByCriteria = new GenerateGiftsByCriteria();
-        giftGenerator = giftsByCriteria.generate(userForGift.getRelationships(messageService.getChatID()));
-        gift = giftGenerator.generateGiftList();
-        String answer = gift.showGifts(num);
-        if(answer.equals("It is all for now.")) {
-            return answer + "\n Use /exit to end.";
-        }else return answer + "\n Use /next to see one more.";
+        if(userForGift.getRelationships(messageService.getChatID()) != null) {
+            giftsByCriteria = new GenerateGiftsByCriteria();
+            giftGenerator = giftsByCriteria.generate(userForGift.getRelationships(messageService.getChatID()));
+            gift = giftGenerator.generateGiftList();
+            String answer = gift.showGifts(num);
+
+            if (answer.equals("It is all for now.")) {
+                return answer + "\n Use /exit to end.";
+            } else return answer + "\n Use /next to see one more.";
+        }
+        else return "First of all use (/generate)";
     }
 
     public void setNum(int num){
