@@ -18,6 +18,6 @@ public class ExitCommand implements Command{
         userForGift.deleteUser(messageService.getChatID());
 
         return "Thank you for using me =)\n" +
-                "If you want generate one more gift restart me (/start)\n";
+                "If you want generate one more gift use (/generate)\n";
     }
 }

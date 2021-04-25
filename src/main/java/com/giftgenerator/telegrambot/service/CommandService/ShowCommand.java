@@ -28,7 +28,7 @@ public class ShowCommand implements Command{
         gift = giftGenerator.generateGiftList();
         String answer = gift.showGifts(num);
         if(answer.equals("It is all for now.")) {
-            return answer + "\n Use /generate to see gifts for someone else.";
+            return answer + "\n Use /exit to end.";
         }else return answer + "\n Use /next to see one more.";
     }
 
