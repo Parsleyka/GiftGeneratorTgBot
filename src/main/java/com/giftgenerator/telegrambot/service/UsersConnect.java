@@ -8,14 +8,12 @@ import java.util.Map;
 
 @Component
 public class UsersConnect {
-    @Autowired
-    MessageService messageService;
 
     private Map<Long,String> users = new HashMap<>();
 
-    public void setRelationships(String relationships){
+    public void setRelationships(Long chatId, String relationships){
 
-        users.put(messageService.getChatID(),relationships);
+        users.put(chatId, relationships);
     }
 
     public String getRelationships(Long chatId){
